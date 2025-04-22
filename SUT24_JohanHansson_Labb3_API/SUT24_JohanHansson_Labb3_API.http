@@ -1,0 +1,6 @@
+@SUT24_JohanHansson_Labb3_API_HostAddress = http://localhost:5144
+
+GET {{SUT24_JohanHansson_Labb3_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

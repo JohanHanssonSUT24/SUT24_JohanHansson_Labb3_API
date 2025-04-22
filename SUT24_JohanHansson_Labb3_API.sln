@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.35906.104
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUT24_JohanHansson_Labb3_API", "SUT24_JohanHansson_Labb3_API\SUT24_JohanHansson_Labb3_API.csproj", "{F831FAF6-2A35-46E1-B1C2-6882C843090B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F831FAF6-2A35-46E1-B1C2-6882C843090B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F831FAF6-2A35-46E1-B1C2-6882C843090B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F831FAF6-2A35-46E1-B1C2-6882C843090B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F831FAF6-2A35-46E1-B1C2-6882C843090B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE948F4D-A426-473F-8562-41D49564D7B9}
+	EndGlobalSection
+EndGlobal
