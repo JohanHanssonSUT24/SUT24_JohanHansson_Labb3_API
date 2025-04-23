@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SUT24_JohanHansson_Labb3_API.Models;
+using SUT24_JohanHansson_Labb3_API.Controllers.Data;
 
 #nullable disable
 
 namespace SUT24_JohanHansson_Labb3_API.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20250422201117_InitialCreate")]
+    [DbContext(typeof(ApiDbContext))]
+    [Migration("20250423061132_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
