@@ -3,9 +3,9 @@ using SUT24_JohanHansson_Labb3_API.Models;
 
 namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
 {
-    public class APIDbContext:DbContext
+    public class ApiDbContext:DbContext
     {
-        public APIDbContext(DbContextOptions<APIDbContext> options) : base(options) { }
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options) { }
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Interest> Interests { get; set; }
@@ -16,7 +16,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PersonInterest>()
-                .HasKey(pi => new { pi.PersonId, pi.InterestId });
+    .HasKey(pi => new { pi.PersonId, pi.InterestId });
 
             modelBuilder.Entity<PersonInterest>()
                 .HasOne(pi => pi.Person)

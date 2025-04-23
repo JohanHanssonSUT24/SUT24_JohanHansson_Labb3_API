@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using SUT24_JohanHansson_Labb3_API.Controllers.Data;
 using SUT24_JohanHansson_Labb3_API.Models;
 
 namespace SUT24_JohanHansson_Labb3_API
@@ -10,7 +11,7 @@ namespace SUT24_JohanHansson_Labb3_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddDbContext<ApiDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
