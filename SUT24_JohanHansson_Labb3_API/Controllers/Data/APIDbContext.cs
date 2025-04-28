@@ -16,7 +16,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PersonInterest>()
-    .HasKey(pi => new { pi.PersonId, pi.InterestId });
+                .HasKey(pi => new { pi.PersonId, pi.InterestId });
 
             modelBuilder.Entity<PersonInterest>()
                 .HasOne(pi => pi.Person)
