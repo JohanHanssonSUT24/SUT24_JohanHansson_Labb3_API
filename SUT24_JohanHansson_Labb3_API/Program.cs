@@ -23,6 +23,12 @@ namespace SUT24_JohanHansson_Labb3_API
 
             var app = builder.Build();
 
+            using(var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
+                SeedData.addSeedData(context);
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
