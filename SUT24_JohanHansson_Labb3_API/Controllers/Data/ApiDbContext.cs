@@ -27,6 +27,14 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
                 .HasOne(pi => pi.Interest)
                 .WithMany(i => i.PersonInterests)
                 .HasForeignKey(pi => pi.InterestId);
+
+            modelBuilder.Entity<Link>()
+                .HasKey(l => l.Id);
+
+            modelBuilder.Entity<Link>()
+                .HasOne(l => l.PersonInterest)
+                .WithMany(pi => pi.Links)
+                .HasForeignKey(l => new {l.PersonId, l.InterestId});    
         }
     }
 }
