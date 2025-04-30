@@ -4,11 +4,11 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
 {
     public static class SeedData
     {
-        public static void addSeedData(ApiDbContext context)
+        public static void addSeedData(ApiDbContext context)//Method to add seeddata to db.
         {
-            if (context.Persons.Any() || context.Interests.Any()) return;
+            if (context.Persons.Any() || context.Interests.Any()) return;//If data exists, stop here.(my teacher dosnt like this)
 
-            var interests = new List<Interest>
+            var interests = new List<Interest>//Create list with interests to be added
             {
                 new Interest{ Title = "Programming", Description = "Coding and software development"},
                 new Interest{ Title = "Cooking", Description = "Making good food"},
@@ -19,7 +19,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
             };
             context.Interests.AddRange(interests);
             context.SaveChanges();
-            var person = new List<Person>
+            var person = new List<Person>//Create list with people to be added
             {
                 new Person {FirstName = "Johan", LastName = "Hansson", Phone = "0700532273"},
                 new Person {FirstName = "Jenny", LastName = "Hansson", Phone = "0700515273"},
@@ -30,7 +30,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
             context.Persons.AddRange(person);
             context.SaveChanges();
 
-            var personInterest = new List<PersonInterest>
+            var personInterest = new List<PersonInterest> //Create list that creates relations between Person and Interest.
             {
                 new PersonInterest { PersonId = 1, InterestId = 6},
                 new PersonInterest { PersonId = 1, InterestId = 1},
@@ -43,7 +43,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
             context.PersonInterests.AddRange(personInterest);
             context.SaveChanges();
 
-            var links = new List<Link>
+            var links = new List<Link> //Create list of links to be added to db
             {
                 new Link { Url = "https://stackoverflow.com", PersonInterestId = 1},
                 new Link { Url = "https://allrecipes.com", PersonInterestId = 2},
