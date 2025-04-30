@@ -30,7 +30,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
          
         }
         [HttpPost]
-        public async Task<ActionResult<Link>> AddLink(CreateLinkRequest request)
+        public async Task<ActionResult<LinkDto>> AddLink(CreateLinkRequest request)
         {
             var pi = await _context.PersonInterests
                 .FirstOrDefaultAsync(pi => pi.PersonId == request.PersonId && pi.InterestId == request.InterestId);
@@ -46,7 +46,9 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
             };
             _context.Links.Add(newLink);
             await _context.SaveChangesAsync();
-            return Ok(newLink);
+
+            var linkDto = new LinkDto(newLink.Id, newLink.Url);
+            return Ok(linkDto);
         }
 
     }
