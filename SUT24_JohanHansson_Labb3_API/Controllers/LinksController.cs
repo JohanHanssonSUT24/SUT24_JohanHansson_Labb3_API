@@ -19,11 +19,12 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
         }
 
         [HttpGet("person/{personId}")]
-        public async Task<ActionResult<IEnumerable<Link>>> GetLinksForPerson(int personId)
+        public async Task<ActionResult<IEnumerable<LinkDto>>> GetLinksForPerson(int personId)
         {
             var links = await _context.Links
-                .Where(l => l.PersonInterest.PersonId == personId)
                 .Include(l => l.PersonInterest)
+                .Where(l => l.PersonInterest.PersonId == personId)
+                .Select(l => new LinkDto(l.Id, l.Url))
                 .ToListAsync();
             return Ok(links);
          
