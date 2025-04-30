@@ -7,7 +7,7 @@ using SUT24_JohanHansson_Labb3_API.Models.DTOs;
 
 namespace SUT24_JohanHansson_Labb3_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")]//States that this is an API-controller
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -17,31 +17,31 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
         {
             _context = context;
         }
-        [HttpGet]
+        [HttpGet]//Get all persons from db
         public async Task<ActionResult<IEnumerable<Person>>> GetAllPersons()
         {
             return Ok(await _context.Persons.ToListAsync());
 
         }
-        [HttpGet("{id}/interests")]
+        [HttpGet("{id}/interests")]//Get all interests connected to one person throu PersonInterest-table
         public async Task<ActionResult<IEnumerable<Interest>>> GetInterestForPerson(int id)
         {
             var interests = await _context.PersonInterests
-                .Where(pi => pi.PersonId == id)
-                .Include(pi => pi.Interest)
-                .Select(pi => pi.Interest)
+                .Where(pi => pi.PersonId == id)//Find correct person
+                .Include(pi => pi.Interest)//Get related Interest-objects
+                .Select(pi => pi.Interest)//Return only relevant Interests
                 .ToListAsync();
 
             return interests;
         }
-        [HttpPost("{id}/interest/{interestId}")]
+        [HttpPost("{id}/interest/{interestId}")]//Add interest to a spefic person
         public async Task<IActionResult> AddInterests(int id, int interestId)
         {
-            var exists = await _context.PersonInterests
+            var exists = await _context.PersonInterests//Check if Interest already exists
                 .AnyAsync(pi => pi.PersonId == id && pi.InterestId == interestId);
-            if (exists) return BadRequest("Intresset finns redan tillagt");
+            if (exists) return BadRequest("Intresset finns redan tillagt");//Error message
 
-            var pi = new PersonInterest
+            var pi = new PersonInterest //Create new connection between person and interest.
             {
                 PersonId = id,
                 InterestId = interestId
@@ -51,36 +51,6 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
 
             return Ok();
         }
-        //[HttpGet("{id}/links")]
-        //public async Task<ActionResult<IEnumerable<string>>> GetLinks(int id)
-        //{
-        //    var links = await _context.Links
-        //        .Where(l => l.PersonInterestId == id)
-        //        .Select(l => l.Url)
-        //        .ToListAsync();
-
-        //    return Ok(links);
-        //}
-        //[HttpPost("{personId}/interest/{interestId}/links")]
-        //public async Task<IActionResult> AddLink(int personId, int interestId, [FromBody] string url)
-        //{
-        //    var pi = await _context.PersonInterests
-        //        .FirstOrDefaultAsync(pi => pi.PersonId == personId && pi.InterestId == interestId);
-
-        //    if (pi == null) return NotFound("Kopplingen finns inte.");
-
-        //    var link = new Link
-        //    {
-        //        Url = url,
-        //        PersonInterestId = pi.Id,
-                
-        //    };
-
-        //    _context.Links.Add(link);
-        //    await _context.SaveChangesAsync();
-
-        //    var linkDto = new LinkDto(link.Id, link.Url);
-        //    return Ok(linkDto);
-        //}
+      
     }
 }
