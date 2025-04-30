@@ -11,8 +11,8 @@ using SUT24_JohanHansson_Labb3_API.Controllers.Data;
 namespace SUT24_JohanHansson_Labb3_API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250423061132_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250430121028_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,16 +53,7 @@ namespace SUT24_JohanHansson_Labb3_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("InterestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonInterestInterestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonInterestPersonId")
+                    b.Property<int>("PersonInterestId")
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
@@ -71,7 +62,7 @@ namespace SUT24_JohanHansson_Labb3_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonInterestPersonId", "PersonInterestInterestId");
+                    b.HasIndex("PersonInterestId");
 
                     b.ToTable("Links");
                 });
@@ -103,15 +94,23 @@ namespace SUT24_JohanHansson_Labb3_API.Migrations
 
             modelBuilder.Entity("SUT24_JohanHansson_Labb3_API.Models.PersonInterest", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("InterestId")
                         .HasColumnType("int");
 
-                    b.HasKey("PersonId", "InterestId");
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("InterestId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("PersonInterests");
                 });
@@ -120,7 +119,7 @@ namespace SUT24_JohanHansson_Labb3_API.Migrations
                 {
                     b.HasOne("SUT24_JohanHansson_Labb3_API.Models.PersonInterest", "PersonInterest")
                         .WithMany("Links")
-                        .HasForeignKey("PersonInterestPersonId", "PersonInterestInterestId")
+                        .HasForeignKey("PersonInterestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

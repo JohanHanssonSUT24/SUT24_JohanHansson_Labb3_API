@@ -1,4 +1,6 @@
-﻿namespace SUT24_JohanHansson_Labb3_API.Models
+﻿using System.Text.Json.Serialization;
+
+namespace SUT24_JohanHansson_Labb3_API.Models
 {
     public class Person
     {
@@ -7,6 +9,7 @@
         public string LastName { get; set; }
         public string Phone { get; set; }
 
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ICollection<PersonInterest> PersonInterests { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
     {
         public static void addSeedData(ApiDbContext context)
         {
-            if(context.Persons.Any() || context.Interests.Any()) return;
+            if (context.Persons.Any() || context.Interests.Any()) return;
 
             var interests = new List<Interest>
             {
@@ -45,12 +45,12 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers.Data
 
             var links = new List<Link>
             {
-                new Link {Url = "https://stackoverflow.com", PersonId = 1, InterestId = 1},
-                new Link {Url = "https://allrecipes.com", PersonId = 1, InterestId = 6},
-                new Link {Url = "https://open.spotify.com/", PersonId = 2, InterestId = 3},
-                new Link {Url = "https://www.aftonbladet.se/sportbladet", PersonId = 3, InterestId = 2},
-                new Link {Url = "https://www.granngarden.se/", PersonId = 4, InterestId = 5},
-                new Link {Url = "https://www.mekonomen.se/", PersonId = 5, InterestId = 1}
+                new Link { Url = "https://stackoverflow.com", PersonInterestId = 1},
+                new Link { Url = "https://allrecipes.com", PersonInterestId = 2},
+                new Link { Url = "https://open.spotify.com/", PersonInterestId = 3},
+                new Link { Url = "https://www.aftonbladet.se/sportbladet", PersonInterestId = 4},
+                new Link { Url = "https://www.granngarden.se/", PersonInterestId = 5},
+                new Link { Url = "https://www.mekonomen.se/", PersonInterestId = 6}
             };
             context.Links.AddRange(links);
             context.SaveChanges();
