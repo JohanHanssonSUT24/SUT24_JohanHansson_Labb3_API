@@ -17,6 +17,15 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
             _context = context;
         }
 
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Interest>>> GetAllInterest()
+        //{
+        //    return await _context.Interests
+        //        .Include(i => i.PersonInterests)
+        //        .ThenInclude(pi => pi.Person)
+        //        .ToListAsync();
+        //}
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Interest>>> GetAllInterest()
         {
