@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SUT24_JohanHansson_Labb3_API.Controllers.Data;
 using SUT24_JohanHansson_Labb3_API.Models;
+using System.Text.Json.Serialization;
 
 namespace SUT24_JohanHansson_Labb3_API
 {
@@ -17,6 +18,10 @@ namespace SUT24_JohanHansson_Labb3_API
             // Add services to the container.
 
             builder.Services.AddControllers();
+                //.AddJsonOptions(options =>
+                //{
+                //    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                //});
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SUT24_JohanHansson_Labb3_API.Controllers.Data;
 using SUT24_JohanHansson_Labb3_API.Models;
+using SUT24_JohanHansson_Labb3_API.Models.DTOs;
 
 namespace SUT24_JohanHansson_Labb3_API.Controllers
 {
@@ -18,25 +19,34 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
         }
 
         [HttpGet("person/{personId}")]
-        public async Task<ActionResult<IEnumerable<Link>>> GetLinks(int personId)
+        public async Task<ActionResult<IEnumerable<Link>>> GetLinksForPerson(int personId)
         {
-            return await _context.Links
-                .Where(l => l.PersonId == personId)
+            var links = await _context.Links
+                .Where(l => l.PersonInterest.PersonId == personId)
+                .Include(l => l.PersonInterest)
                 .ToListAsync();
+            return Ok(links);
+         
         }
         [HttpPost]
-        public async Task<ActionResult<Link>> AddLink(Link link)
+        public async Task<ActionResult<Link>> AddLink(CreateLinkRequest request)
         {
-            var personInterest = await _context.PersonInterests
-                .FindAsync(link.PersonId, link.InterestId);
-            if(personInterest == null)
+            var pi = await _context.PersonInterests
+                .FirstOrDefaultAsync(pi => pi.PersonId == request.PersonId && pi.InterestId == request.InterestId);
+            if(pi == null)
             {
-                return BadRequest("Personen är har inte detta intresset.");
+                return BadRequest("Personen har inte detta intresset.");
             }
+            var newLink = new Link()
+            {
+                Url = request.Url,
+                PersonInterestId = pi.Id
 
-            _context.Links.Add(link);
+            };
+            _context.Links.Add(newLink);
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(newLink);
         }
+
     }
 }
