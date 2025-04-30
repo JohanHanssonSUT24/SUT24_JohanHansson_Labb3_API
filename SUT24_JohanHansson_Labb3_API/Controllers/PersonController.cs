@@ -51,34 +51,36 @@ namespace SUT24_JohanHansson_Labb3_API.Controllers
 
             return Ok();
         }
-        [HttpGet("{id}/links")]
-        public async Task<ActionResult<IEnumerable<string>>> GetLinks(int id)
-        {
-            var links = await _context.Links
-                .Where(l => l.PersonInterestId == id)
-                .Select(l => l.Url)
-                .ToListAsync();
+        //[HttpGet("{id}/links")]
+        //public async Task<ActionResult<IEnumerable<string>>> GetLinks(int id)
+        //{
+        //    var links = await _context.Links
+        //        .Where(l => l.PersonInterestId == id)
+        //        .Select(l => l.Url)
+        //        .ToListAsync();
 
-            return Ok(links);
-        }
-        [HttpPost("{personId}/interest/{interestId}/links")]
-        public async Task<IActionResult> AddLink(int personId, int interestId, [FromBody] string url)
-        {
-            var pi = await _context.PersonInterests
-                .FirstOrDefaultAsync(pi => pi.PersonId == personId && pi.InterestId == interestId);
+        //    return Ok(links);
+        //}
+        //[HttpPost("{personId}/interest/{interestId}/links")]
+        //public async Task<IActionResult> AddLink(int personId, int interestId, [FromBody] string url)
+        //{
+        //    var pi = await _context.PersonInterests
+        //        .FirstOrDefaultAsync(pi => pi.PersonId == personId && pi.InterestId == interestId);
 
-            if (pi == null) return NotFound("Kopplingen finns inte.");
+        //    if (pi == null) return NotFound("Kopplingen finns inte.");
 
-            var link = new Link
-            {
-                Url = url,
-                PersonInterestId = pi.Id,
+        //    var link = new Link
+        //    {
+        //        Url = url,
+        //        PersonInterestId = pi.Id,
                 
-            };
+        //    };
 
-            _context.Links.Add(link);
-            await _context.SaveChangesAsync();
-            return Ok(link);
-        }
+        //    _context.Links.Add(link);
+        //    await _context.SaveChangesAsync();
+
+        //    var linkDto = new LinkDto(link.Id, link.Url);
+        //    return Ok(linkDto);
+        //}
     }
 }
