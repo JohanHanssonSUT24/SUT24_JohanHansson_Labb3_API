@@ -40,13 +40,10 @@ The API provides endpoints for creating, retrieving, and managing relationships 
    Hämtar alla intressen kopplade till en specifik person.
 
    **Parametrar:**
-   - `id` (int): Personens unika ID.
+   - "id" (int): Personens unika ID.
 
    **Svar:**
    - 200 OK: En lista på intressen kopplade till personen.
-   
-   **Exempel:**
-   - 404 Not Found: Om personen inte finns.
    
    **Request URL:**
    https://localhost:7146/api/Person/1/interests
