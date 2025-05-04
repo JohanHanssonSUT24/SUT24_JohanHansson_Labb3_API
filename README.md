@@ -36,8 +36,8 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 2. **GET /api/person/{id}/interests**  
    Hämtar alla intressen kopplade till en specifik person.
 
-   **Parametrar:**
-   - "id" (int): Personens unika ID.
+   **Parameters**
+   "id": int
    
    **Request URL:**
    https://localhost:7146/api/Person/1/interests
@@ -65,9 +65,9 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 3. **POST /api/person/{id}/interest/{interestId}**  
    Lägg till ett intresse för en specifik person.
 
-   **Parametrar:**
-   - "id" (int): Personens unika ID.
-   - `interestId` (int): Intressets unika ID.
+   **Parameters:**
+   "id": int
+   "interestId": int
 
    **Request URL:**
    https://localhost:7146/api/Person/1/interest/4
@@ -109,12 +109,16 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 3. **GET /api/interest/{id}**  
    Hämtar ett specifikt intresse baserat på dess ID.
 
+   **Parameters**
+   "id": int
+
    **Request URL:**
    https://localhost:7146/api/Interest/1
    **Request:**
    {
    "id": id
    }
+   
    **Exempel Response:**
    {
    "id": 1,
@@ -145,9 +149,14 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 
    **Request URL:**
    https://localhost:7146/api/Links/person/2
+
+   **Parameters**
+   "id": int
+   
    **Request:**
    {
    "id": id
+   "url": "string"
    }
    **Exempel Response:**
    {
