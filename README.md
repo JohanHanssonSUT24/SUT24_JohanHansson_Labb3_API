@@ -9,9 +9,6 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 1. **GET /api/person**  
    Hämtar alla personer från databasen.
 
-   **Svar:**
-   200 OK: Listar alla personer.
-
    **Request URL:**
    https://localhost:7146/api/Person
 
@@ -41,9 +38,6 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 
    **Parametrar:**
    - "id" (int): Personens unika ID.
-
-   **Svar:**
-   - 200 OK: En lista på intressen kopplade till personen.
    
    **Request URL:**
    https://localhost:7146/api/Person/1/interests
@@ -68,22 +62,22 @@ The API provides endpoints for creating, retrieving, and managing relationships 
   },
  
 
-4. **POST /api/person/{id}/interest/{interestId}**  
+3. **POST /api/person/{id}/interest/{interestId}**  
    Lägg till ett intresse för en specifik person.
 
    **Parametrar:**
-   - `id` (int): Personens unika ID.
+   - "id" (int): Personens unika ID.
    - `interestId` (int): Intressets unika ID.
 
-   **Svar:**
-   - 200 OK: Intresset är tillagt för personen.
-   - 400 Bad Request: Om intresset redan finns kopplat till personen.
-
    **Request URL:**
-   
+   https://localhost:7146/api/Person/1/interest/4
+
    **Request:**
-   
-   **Exempel Response:**
+   "id": int,
+    "interestId": int
+
+   **Request:**
+   If not OK: Error 400 - Intresset finns redan tillagt
 
 
 ### InterestController
@@ -91,37 +85,95 @@ The API provides endpoints for creating, retrieving, and managing relationships 
 1. **GET /api/interest**  
    Hämtar alla intressen från databasen.
 
-   **Svar:**
-   - 200 OK: En lista på alla intressen.
+   **Request URL:**
+   https://localhost:7146/api/Interest
 
-2. **GET /api/interest/{id}**  
+   **Request:**
+   {
+   "id": int,
+    "title": "string",
+    "description": "string",
+   }
+   **Exempel Response:**
+   {
+    "id": 1,
+    "title": "Programming",
+    "description": "Coding and software development"
+  },
+  {
+    "id": 2,
+    "title": "Cooking",
+    "description": "Making good food"
+  },
+
+3. **GET /api/interest/{id}**  
    Hämtar ett specifikt intresse baserat på dess ID.
 
-   **Parametrar:**
-   - `id` (int): Intressets unika ID.
-
-   **Svar:**
-   - 200 OK: Det specifika intresset.
-   - 404 Not Found: Om intresset inte finns.
-  
    **Request URL:**
-   
+   https://localhost:7146/api/Interest/1
    **Request:**
-   
+   {
+   "id": id
+   }
    **Exempel Response:**
+   {
+   "id": 1,
+   "title": "Programming",
+   "description": "Coding and software development"
+   }
 
-3. **POST /api/interest**  
+4. **POST /api/interest**  
    Skapar ett nytt intresse.
 
-   **Body (JSON):**
-   ```json
+   **Request URL:**
+   https://localhost:7146/api/Interest
+   **Request:**
    {
-     "title": "New Interest",
-     "description": "Description of the interest"
+   "title": "string",
+   "description": "string"
+   }
+   **Exempel Response:**
+   {
+   "id": 12,
+   "title": "Art",
+   "description": "Painting stuff"
+   }
+
+### LinksController
+1. **GET /api/Links/person/{personId}**
+   Hämtar specifika länkar kopplade till personId.
+
+   **Request URL:**
+   https://localhost:7146/api/Links/person/2
+   **Request:**
+   {
+   "id": id
+   }
+   **Exempel Response:**
+   {
+    "id": 3,
+    "url": "https://open.spotify.com/"
+   },
+   {
+    "id": 8,
+    "url": "JohanHanssonWasHere"
+   }
+
+2. **POST /api/Links**
+   Lägger till länk kopplat till personId och interestId
+
+   **Request URL:**
+   https://localhost:7146/api/Links
+   **Request:**
+   {
+   "url": "string",
+   "personId": 2,
+   "interestId": 2
+   }
+   **Exempel Response:**
+   {
+   "id": 16,
+   "url": "www.seb.com"
    }
    
-   **Request URL:**
    
-   **Request:**
-   
-   **Exempel Response:**
